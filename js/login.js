@@ -1,5 +1,6 @@
+
 function login() {
-    identityWindow = window.open('https://identity.bitclout.com/log-in', null, 'toolbar=no, width=800, height=1000, top=0, left=0');    
+    identityWindow = window.open('https://identity.bitclout.com/log-in', null, 'toolbar=no, width=800, height=1000, top=0, left=0');
 }
 
 function handleInit(e) {
@@ -10,7 +11,7 @@ function handleInit(e) {
         for (const e of pendingRequests) {
             postMessage(e);
         }
-        
+
         pendingRequests = []
     }
     respond(e.source, e.data.id, {})
@@ -25,6 +26,12 @@ function handleLogin(payload) {
         var element = document.getElementById('loggedin');
         alert('Logged in as' + payload.publicKeyAdded);
         $('.api-section').css('display', 'block')
+        login = true;
+        $('#header-login').css('display', 'none');
+        $('.btn--white-border').css('display', 'none');
+        $('#gridmore').css('display', 'none');
+        
+        $('#header-logout').css('display', 'block');
         //element.innerText = 'Logged in as ' + payload.publicKeyAdded;
     }
 }
@@ -34,11 +41,11 @@ function respond(e, t, n) {
         id: t,
         service: "identity",
         payload: n
-    }, "*")    
+    }, "*")
 }
 
 function postMessage(e) {
-    init ? this.iframe.contentWindow.postMessage(e, "*") : pendingRequests.push(e)    
+    init ? this.iframe.contentWindow.postMessage(e, "*") : pendingRequests.push(e)
 }
 
 // const childWindow = document.getElementById('identity').contentWindow;
@@ -46,7 +53,13 @@ window.addEventListener('message', message => {
     console.log('message: ');
     // console.log(message);
 
-    const {data: {id: id, method: method, payload: payload}} = message;    
+    const {
+        data: {
+            id: id,
+            method: method,
+            payload: payload
+        }
+    } = message;
 
     console.log(id);
     console.log(method);
@@ -59,8 +72,13 @@ window.addEventListener('message', message => {
     }
 });
 
+function logout() {
+    login = false;
+    window.location.reload();
+}
 
 var init = false;
 var iframe = null;
 var pendingRequests = [];
 var identityWindow = null;
+var login = false;

@@ -283,3 +283,16 @@
     color: #dc3545;
     font-weight: 500;
 }
+
+
+.btn-example{
+    background: #ff0000;
+    color : #fff;
+}
+
+.btn-example:hover{
+    background: transparent;
+    border: 1px solid;
+    border-color: #f00;
+    color: #fff;
+}
