@@ -31,8 +31,9 @@
 					<li><a href="#locations" class="header-link">LOCATIONS</a></li>
 					<li><a href="#faq" class="header-link">FAQ</a></li>
 					<li><a href="#support" class="header-link">SUPPORT</a></li>
-					<li class="header__btn header__btn--signup modal-toggle" onclick="login()"><a href="#">Login with
+					<li class="header__btn header__btn--signup modal-toggle"><a href="#" id="header-login">Login with
 							BitClout</a></li>
+					<li class="header__btn header__btn--signup modal-toggle"><a href="#" id="header-logout" onclick="logout()">Log out</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -127,14 +128,14 @@
 					<h3 class="grid__title"><span>Mining</span></h3>
 					<p class="grid__text">Responsive code that makes your landing page look good on all devices
 						(desktops, tablets, and phones). Created with mobile specialists.</p>
-					<a href="#pricing" class="grid__more">VIEW PLANS</a>
+					<a href="#hiw" class="grid__more">VIEW PLANS</a>
 				</div>
 				<div class="grid__item">
 					<div class="grid__icon"><img src="images/icons/icons/h-vps_1.png" alt="" title="" /></div>
 					<h3 class="grid__title"><span>Node Syncing</span></h3>
 					<p class="grid__text">A perfect structure created after we analized trends in SaaS landing page
 						designs. Analysis made to the most popular SaaS businesses.</p>
-					<a href="#pricing" class="grid__more">VIEW PLANS</a>
+					<a href="#hiw" class="grid__more">VIEW PLANS</a>
 				</div>
 
 				<div class="grid__item">
@@ -142,7 +143,7 @@
 					<h3 class="grid__title"><span>Infrastructure Layer</span></h3>
 					<p class="grid__text">Blocks, Elements and Modifiers. A smart HTML/CSS structure that can easely be
 						reused. Layout driven by the purpose of modularity.</p>
-					<a href="#pricing" class="grid__more">VIEW PLANS</a>
+					<a href="#hiw" class="grid__more">VIEW PLANS</a>
 				</div>
 
 			</div>
@@ -179,7 +180,7 @@
 				<div class="hiw-content">
 					<div class="hiw-content__wrapper swiper-wrapper">
 						<div class="hiw-content__slide swiper-slide" id="mine">
-	<pre>
+							<pre>
 		<strong>var Stratum = require('stratum-pool');</strong>
 		var pool = Stratum.createPool({
 		"coin": BitClout,
@@ -308,7 +309,8 @@
 				<div class="hiw-buttons">
 					<span class="text text-success">Copied!</span>
 					<button class="btn btn--blue-bg copy-code">GET THE CODE</button>
-					<button class="btn btn--red-bg">SEE EXAMPLE</button>
+					<a href="https://bitclout.com/u/CloutPool" target="_blank" class="btn btn--red-bg btn-example">SEE
+						EXAMPLE</a>
 				</div>
 
 			</div>
@@ -496,7 +498,7 @@
 					<p class="grid__text">Find out what LATERAL can do for your business</p>
 				</div>
 				<div class="grid__item grid__item--padding">
-					<a href="#" onclick="login()" class="grid__more">SIGN UP</a>
+					<a href="#" onclick="login()" id="gridmore" class="grid__more">SIGN UP</a>
 				</div>
 
 			</div>
@@ -520,7 +522,7 @@
 						class="site-logo grid__title--footer-logo">
 					<p class="grid__text grid__text--copyright">Copyright &copy; 2021 CloutPool. <br />All Rights
 						Reserved. </p>
-					
+
 				</div>
 				<div class="grid__item">
 					<h3 class="grid__title grid__title--footer">Quick Links</h3>
@@ -533,13 +535,13 @@
 				<div class="grid__item">
 					<h3 class="grid__title grid__title--footer">Run</h3>
 					<ul class="grid__list grid__list--fmenu">
-						<li><a href="#" onclick="login()">Login</a></li>
+						<li><a href="#" class="btn--white-border" onclick="login()">Login</a></li>
 					</ul>
 				</div>
 				<div class="grid__item">
 					<h3 class="grid__title grid__title--footer">Support</h3>
 					<ul class="grid__list grid__list--fmenu">
-						<li><a href="https:// bitclout.com/u/CloutPool" target="_blank">Contact</a></li>
+						<li><a href="https://bitclout.com/u/CloutPool" target="_blank">Contact</a></li>
 						<li><a href="#faq">FAQ</a></li>
 
 
@@ -554,45 +556,62 @@
 
 	</footer>
 
+
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.paroller.min.js"></script>
 	<script src="js/jquery.custom.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<script src="js/swiper.custom.js"></script>
 	<script src="js/menu.js"></script>
-	<script src="js/login.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
-
+	<script src="js/login.js"></script>
 
 	<script>
 		$(document).ready(function () {
 			$('.text-success').css('display', 'none')
 			$('.api-section').css('display', 'none')
+			$('#header-logout').css('display','none');
+
 		})
 
-		$('#mining').click(function(e){
+		$('.grid__more').click(function () {
+			if (!login) {
+				identityWindow = window.open('https://identity.bitclout.com/log-in', null,
+					'toolbar=no, width=800, height=1000, top=0, left=0');
+			} else {
+				$('#hiw').scroll();
+			}
+		});
+
+		$('#header-login').click(function (e) {
+			e.preventDefault();
+			identityWindow = window.open('https://identity.bitclout.com/log-in', null,
+				'toolbar=no, width=800, height=1000, top=0, left=0');
+		});
+
+		$('#mining').click(function (e) {
 			e.preventDefault();
 			$('.copy-code').attr('data-clipboard-target', '#mining');
 			$('.text-success').css('display', 'none')
 		});
 
-		$('#lite-node').click(function(e){
+		$('#lite-node').click(function (e) {
 			e.preventDefault();
 			$('.copy-code').attr('data-clipboard-target', '#lite-node');
 			$('.text-success').css('display', 'none')
 		});
 
-		$('#alpa-node').click(function(e){
+		$('#alpa-node').click(function (e) {
 			e.preventDefault();
 			$('.copy-code').attr('data-clipboard-target', '#alpa-node');
 			$('.text-success').css('display', 'none')
 		});
 
-		$('.copy-code').click(function(e){
+		$('.copy-code').click(function (e) {
 			e.preventDefault()
 			$('.text-success').css('display', 'none')
 
-			var copyText =  $('.swiper-slide-active').text();
+			var copyText = $('.swiper-slide-active').text();
 			const textArea = document.createElement('textarea');
 			textArea.textContent = copyText;
 			document.body.append(textArea);
@@ -601,7 +620,7 @@
 
 			//alert(textArea.textContent);
 			$('.text-success').css('display', 'inline')
-			
+
 		})
 	</script>
 </body>
