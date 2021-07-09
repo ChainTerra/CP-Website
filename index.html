@@ -53,7 +53,7 @@
 					<div class="intro__buttons intro__buttons--left">
 						<a href="https://chainterra.github.io/BTCLT-Guide/" target="_blank" class="btn btn--blue-bg">SEE
 							GUIDE</a>
-						<a href="#" class="btn btn--white-border" onclick="login()">SIGN IN</a>
+						<a href="#" class="btn btn--white-border" id="herologin">SIGN IN</a>
 					</div>
 				</div>
 			</div>
@@ -535,7 +535,7 @@
 				<div class="grid__item">
 					<h3 class="grid__title grid__title--footer">Run</h3>
 					<ul class="grid__list grid__list--fmenu">
-						<li><a href="#" class="btn--white-border" onclick="login()">Login</a></li>
+						<li><a href="#footer" class="btn--white-border" id="footerlogin">Login</a></li>
 					</ul>
 				</div>
 				<div class="grid__item">
@@ -583,7 +583,20 @@
 			}
 		});
 
+		$('#footerlogin').click(function(e){
+			e.preventDefault();
+
+			identityWindow = window.open('https://identity.bitclout.com/log-in', null,
+					'toolbar=no, width=800, height=1000, top=0, left=0');
+		});
+
 		$('#header-login').click(function (e) {
+			e.preventDefault();
+			identityWindow = window.open('https://identity.bitclout.com/log-in', null,
+				'toolbar=no, width=800, height=1000, top=0, left=0');
+		});
+
+		$('#herologin').click(function(e){
 			e.preventDefault();
 			identityWindow = window.open('https://identity.bitclout.com/log-in', null,
 				'toolbar=no, width=800, height=1000, top=0, left=0');
