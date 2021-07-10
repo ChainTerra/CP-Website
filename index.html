@@ -631,6 +631,7 @@
 			textArea.select();
 			document.execCommand("copy");
 
+			textArea.setAttribute('class', 'copyText');
 			//alert(textArea.textContent);
 			$('.text-success').css('display', 'inline')
 
