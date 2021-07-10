@@ -296,3 +296,8 @@
     border-color: #f00;
     color: #fff;
 }
+
+
+.copyText{
+    display: none !important;
+}
